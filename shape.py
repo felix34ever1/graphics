@@ -3,12 +3,14 @@ import vector as v
 
 class Shape():
 
-    def __init__(self) -> None:
+    def __init__(self,offset_x,offset_y) -> None:
         self.vertices:list[v.Vector3D]
         '''List of vertices that the shape contains'''
         self.surfaces:list[int] 
         '''Each surface is represented by a list of integers where each int is the index of the vertex in vertices list'''
-    
+        self.offset_x = offset_x
+        self.offset_y = offset_y
+
     def setVertices(self,vertex_list:list[v.Vector3D]):
         self.vertices = vertex_list
     
@@ -31,15 +33,18 @@ class Shape():
             vertex = self.getVertex(vertex_index)
             # Now translate coordinates around the origin, perform algorithm and move them back
             try:
-                x = (((vertex.x-camera_position.x)*abs(vertex.z-camera_position.z))//vertex.z) # Applies algorithm learned in lecture
+                #   v.Vector3D(-5,-5,-1), #0
+                #   camera_position = v.Vector3D(0,0,-1)
+
+
+                x = (((vertex.x-camera_position.x)*(vertex.z-camera_position.z))//vertex.z) # Applies algorithm learned in lecture
                 # I had to guess some parts e.g x on slide = dx, zs on slide = abs(zs)
-                # I realise that dx is not actually the ratio of x to xs but the ratio of hypotenuse of x and z so might change that
-                x += camera_position.x
+                x += camera_position.x+300
             except ZeroDivisionError: # Incase the position of the shape is zero, this is wrong and screws with the visuals
                 x = vertex.x+100-camera_position.x
             try:
-                y = ((vertex.y-camera_position.y)*abs(vertex.z-camera_position.z))//vertex.z # same but for y
-                y+=camera_position.y
+                y = ((vertex.y-camera_position.y)*(vertex.z-camera_position.z))//vertex.z # same but for y
+                y+=camera_position.y+300
             except ZeroDivisionError: # Incase the position of the shape is zero, this is wrong and screws with the visuals
                 y = vertex.y+100-camera_position.y
 
