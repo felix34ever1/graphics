@@ -45,8 +45,8 @@ def add(m1:Matrix,m2:Matrix)->Matrix:
         return([[0]])
     
 def matrixToVector(m1:Matrix):
-    '''Returns a list of Vector3Ds '''
-    if len(m1.array[0]) == 3:
+    '''Returns a list of Vector3Ds from any array which has a column size >= 3. If greater, only the first 3 values will be taken. '''
+    if len(m1.array[0]) >= 3:
         vector_list = []
         for i in range(len(m1.array)):
             data = m1.array[i]
