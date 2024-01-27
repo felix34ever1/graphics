@@ -33,9 +33,6 @@ class Shape():
             vertex = self.getVertex(vertex_index)
             # Now translate coordinates around the origin, perform algorithm and move them back
             try:
-                #   v.Vector3D(-5,-5,-1), #0
-                #   camera_position = v.Vector3D(0,0,-1)
-
 
                 x = (((vertex.x-camera_position.x)*(vertex.z-camera_position.z))//vertex.z) # Applies algorithm learned in lecture
                 # I had to guess some parts e.g x on slide = dx, zs on slide = abs(zs)

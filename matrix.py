@@ -25,9 +25,9 @@ class Matrix():
                     self.array[i].append(0)
 
     def display(self)->None:
-        for i in range(self.column_size):
+        for i in range(self.row_size):
             new_string = ""
-            for j in range(self.row_size):
+            for j in range(self.column_size):
                 new_string+=str(self.array[j][i])+" "
             print(new_string)
     
@@ -42,9 +42,26 @@ def add(m1:Matrix,m2:Matrix)->Matrix:
                 new_matrix.array[i][j] = m1.array[i][j]+m2.array[i][j]
         return new_matrix
     else:
-        return([[0]])
+        new_matrix = Matrix(1,1,[0])
+        return(new_matrix)
+
+def multiply(m1:Matrix,m2:Matrix)->Matrix:
+    if m1.column_size == m2.row_size:
+        new_matrix = Matrix(m1.row_size,m2.column_size)
+        for i in range(m1.row_size):
+            for j in range(m2.column_size):
+                total = 0
+                for k in range(m1.column_size): # Add up all numbers and multiply
+                    total+=m1.array[i][k]*m2.array[k][j]
+                new_matrix.array[i][j] = total
+        return new_matrix
+    else:
+        new_matrix = Matrix(1,1,[0])
+        return(new_matrix)        
+
+        
     
-def matrixToVector(m1:Matrix):
+def matrixToVector3D(m1:Matrix):
     '''Returns a list of Vector3Ds from any array which has a column size >= 3. If greater, only the first 3 values will be taken. '''
     if len(m1.array[0]) >= 3:
         vector_list = []

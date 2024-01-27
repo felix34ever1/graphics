@@ -13,19 +13,19 @@ window_size = (600,600)
 
 WINDOW = pygame.display.set_mode(window_size)
 
-camera_position = v.Vector3D(0,0,30)
+camera_position = v.Vector3D(0,0,300)
 
 cube = shape.Shape(window_size[0]/2,window_size[1]/2)
 triangular_based_prism = shape.Shape(window_size[0]/2,window_size[1]/2)
 cube.setVertices([
-    v.Vector3D(-20,-20,12), #0
-    v.Vector3D(-20,20,12),#1
-    v.Vector3D(20,20,12),#2
-    v.Vector3D(20,-20,12),#3
-    v.Vector3D(-20,-20,10),#4
-    v.Vector3D(-20,20,10),#5
-    v.Vector3D(20,20,10),#6
-    v.Vector3D(20,-20,10)#7
+    v.Vector3D(-20,-20,200), #0
+    v.Vector3D(-20,20,200),  #1
+    v.Vector3D(20,20,200),   #2
+    v.Vector3D(20,-20,200),  #3
+    v.Vector3D(-20,-20,190), #4
+    v.Vector3D(-20,20,190),  #5
+    v.Vector3D(20,20,190),   #6
+    v.Vector3D(20,-20,190)   #7
 ])
 
 cube.setSurfaces( #just defined the connections of a cube
@@ -38,12 +38,12 @@ cube.setSurfaces( #just defined the connections of a cube
 )
 
 triangular_based_prism.setVertices([
-    v.Vector3D(-100,0,5), #0
-    v.Vector3D(100,0,5),  #1
-    v.Vector3D(0,100,5),  #2
-    v.Vector3D(-100,0,4), #3
-    v.Vector3D(100,0,4),  #4
-    v.Vector3D(0,100,4),  #5
+    v.Vector3D(-100,0,290), #0
+    v.Vector3D(100,0,290),  #1
+    v.Vector3D(0,100,290),  #2
+    v.Vector3D(-100,0,260), #3
+    v.Vector3D(100,0,260),  #4
+    v.Vector3D(0,100,260)   #5
 ])
 
 triangular_based_prism.setSurfaces([
@@ -111,7 +111,7 @@ while is_running: # Main pygame loop
     for _ in range(len(triangular_based_prism.surfaces)):
         coords = triangular_based_prism.getSurfaceCoordinates((len(triangular_based_prism.surfaces)-1)-_,camera_position) # Gets all 2d coordinates for a surface of shape
         
-        pygame.draw.polygon(WINDOW,colour_array[_],coords,0) # Draws polygon filled in
+        pygame.draw.polygon(WINDOW,colour_array[_],coords,5) # Draws polygon filled in
     
 
 
