@@ -6,39 +6,39 @@ class Matrix():
     
 
 
-    def __init__(self,row_size:int,column_size:int,numbers:list[int] = None):
-        ''' Create a matrix by giving row number and column number for dimensions and a list of numbers which will be put in column order.
+    def __init__(self,num_rows:int,num_cols:int,numbers:list[int] = None):
+        ''' Create a matrix by giving row number and column number for dimensions and a list of numbers which will be put in row order.
         If numbers is left empty, it will create a zero matrix.'''
-        self.row_size = row_size
-        self.column_size = column_size
+        self.num_rows = num_rows
+        self.num_cols = num_cols
         self.array:list[list] = []
         if numbers!=None:
             self.array = []
-            for i in range(row_size):
+            for i in range(num_rows):
                 self.array.append([])
-                for j in range(column_size):
-                    self.array[i].append(numbers[i*self.column_size+j])
+                for j in range(num_cols):
+                    self.array[i].append(numbers[i*self.num_cols+j])
         else:
-            for i in range(row_size):
+            for i in range(num_rows):
                 self.array.append([])
-                for j in range(column_size):
+                for j in range(num_cols):
                     self.array[i].append(0)
 
     def display(self)->None:
-        for i in range(self.row_size):
+        for i in range(self.num_rows):
             new_string = ""
-            for j in range(self.column_size):
-                new_string+=str(self.array[j][i])+" "
+            for j in range(self.num_cols):
+                new_string+=str(self.array[i][j])+" "
             print(new_string)
     
     def getCol(self,row_index)->list[int]:
         return(self.array[row_index])
 
 def add(m1:Matrix,m2:Matrix)->Matrix:
-    if m1.row_size == m2.row_size and m1.column_size == m2.column_size:
-        new_matrix = Matrix(m1.row_size,m1.column_size)
-        for i in range(m1.row_size):
-            for j in range(m1.column_size):
+    if m1.num_rows == m2.num_rows and m1.num_cols == m2.num_cols:
+        new_matrix = Matrix(m1.num_rows,m1.num_cols)
+        for i in range(m1.num_rows):
+            for j in range(m1.num_cols):
                 new_matrix.array[i][j] = m1.array[i][j]+m2.array[i][j]
         return new_matrix
     else:
@@ -46,12 +46,12 @@ def add(m1:Matrix,m2:Matrix)->Matrix:
         return(new_matrix)
 
 def multiply(m1:Matrix,m2:Matrix)->Matrix:
-    if m1.column_size == m2.row_size:
-        new_matrix = Matrix(m1.row_size,m2.column_size)
-        for i in range(m1.row_size):
-            for j in range(m2.column_size):
+    if m1.num_cols == m2.num_rows:
+        new_matrix = Matrix(m1.num_rows,m2.num_cols)
+        for i in range(m1.num_rows):
+            for j in range(m2.num_cols):
                 total = 0
-                for k in range(m1.column_size): # Add up all numbers and multiply
+                for k in range(m1.num_cols): # Add up all numbers and multiply
                     total+=m1.array[i][k]*m2.array[k][j]
                 new_matrix.array[i][j] = total
         return new_matrix

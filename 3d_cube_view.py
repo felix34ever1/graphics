@@ -106,12 +106,12 @@ while is_running: # Main pygame loop
     for _ in range(len(cube.surfaces)):
         coords = cube.getSurfaceCoordinates((len(cube.surfaces)-1)-_,camera_position) # Gets all 2d coordinates for a surface of shape
         
-        pygame.draw.polygon(WINDOW,colour_array[_],coords,5) # Draws polygon filled in
+        pygame.draw.polygon(WINDOW,colour_array[_],coords,0) # Draws polygon filled in
 
     for _ in range(len(triangular_based_prism.surfaces)):
         coords = triangular_based_prism.getSurfaceCoordinates((len(triangular_based_prism.surfaces)-1)-_,camera_position) # Gets all 2d coordinates for a surface of shape
         
-        pygame.draw.polygon(WINDOW,colour_array[_],coords,5) # Draws polygon filled in
+        pygame.draw.polygon(WINDOW,colour_array[_],coords,0) # Draws polygon filled in
     
 
 
